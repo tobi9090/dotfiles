@@ -1,0 +1,9 @@
+configuration {
+ modes: "window,run,ssh,drun";
+ show-icons: true;
+ display-drun: "Application";
+ font: "ComicShannsMonoNerdFontMono-Bold";
+
+ }
+
+@theme "/usr/share/rofi/themes/Arc-Dark.rasi"
