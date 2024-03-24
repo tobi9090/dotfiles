@@ -148,4 +148,4 @@ source "$OSH"/oh-my-bash.sh
  alias n="nvim"
  alias t="tmux"
  alias rma="rm -rf"
-
+ alias lg="lazygit"
