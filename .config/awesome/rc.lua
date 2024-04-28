@@ -4,6 +4,13 @@ local awful = require("awful")
 require("awful.autofocus")
 local beautiful = require("beautiful")
 local naughty = require("naughty")
+local gears = require("gears")
+
+-- local client = require("client")
+
+client.connect_signal("manage", function(c)
+	c.shape = gears.shape.rounded_rect
+end)
 
 naughty.connect_signal("request::display_error", function(message, startup)
 	naughty.notification({
@@ -49,6 +56,10 @@ require("config.rule")
 
 -- {{{ Titlebars
 require("ui.titlebar")
+-- }}}
+
+-- {{{ Client
+require("ui.client")
 -- }}}
 
 -- {{{ Notifications

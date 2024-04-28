@@ -1,42 +1,43 @@
 return {
-	{
-		"nvim-telescope/telescope.nvim",
-		branch = "0.1.x",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			{
-				"nvim-telescope/telescope-fzf-native.nvim",
-				build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
-				cond = vim.fn.executable("cmake") == 1,
-			},
-		},
-		config = function()
-			local actions = require("telescope.actions")
+  "nvim-telescope/telescope.nvim",
+  branch = "0.1.x",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    "nvim-tree/nvim-web-devicons",
+    "folke/todo-comments.nvim",
+  },
+  config = function()
+    local telescope = require("telescope")
+    local actions = require("telescope.actions")
+    local transform_mod = require("telescope.actions.mt").transform_mod
 
-			require("telescope").setup({
-				defaults = {
-					mappings = {
-						i = {
-							["<C-k>"] = actions.move_selection_previous,
-							["<C-j>"] = actions.move_selection_next,
-							["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-							["<C-x>"] = actions.delete_buffer,
-						},
-					},
-					file_ignore_patterns = {
-						"node_modules",
-						"yarn.lock",
-						".git",
-						".sl",
-						"_build",
-						".next",
-					},
-					hidden = true,
-				},
-			})
+    local trouble = require("trouble")
+    local trouble_telescope = require("trouble.providers.telescope")
 
-			-- Enable telescope fzf native, if installed
-			pcall(require("telescope").load_extension, "fzf")
-		end,
-	},
+    -- or create your custom action
+    local custom_actions = transform_mod({
+      open_trouble_qflist = function(prompt_bufnr)
+        trouble.toggle("quickfix")
+      end,
+    })
+
+    telescope.setup({
+      defaults = {
+      set_env = { ['COLORTERM'] = 'truecolor' },
+        path_display = { "smart" },
+        mappings = {
+          i = {
+            ["<esc>"] = actions.close,
+            ["<C-k>"] = actions.move_selection_previous, -- move to prev result
+            ["<C-j>"] = actions.move_selection_next, -- move to next result
+            ["<C-q>"] = actions.send_selected_to_qflist + custom_actions.open_trouble_qflist,
+            ["<C-t>"] = trouble_telescope.smart_open_with_trouble,
+          },
+        },
+      },
+    })
+
+    telescope.load_extension("fzf")    
+  end,
 }

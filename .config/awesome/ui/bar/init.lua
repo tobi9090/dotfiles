@@ -82,7 +82,6 @@ screen.connect_signal("request::desktop_decoration", function(s)
 		filter = awful.widget.tasklist.filter.focused,
 		style = {
 			border_width = 1,
-			border_color = "#777777",
 			shape = gears.shape.rounded_bar,
 		},
 		layout = wibox.layout.fixed.horizontal,
@@ -122,6 +121,8 @@ screen.connect_signal("request::desktop_decoration", function(s)
 		stretch = false,
 		visible = true,
 		height = dpi(39),
+		bg = beautiful.bg_normal,
+		opacity = 0.9,
 		width = s.geometry.width - 20,
 		shape = helpers.rrect(beautiful.border_radius),
 		screen = s,
