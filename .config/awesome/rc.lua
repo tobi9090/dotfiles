@@ -6,8 +6,6 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local gears = require("gears")
 
--- local client = require("client")
-
 client.connect_signal("manage", function(c)
 	c.shape = gears.shape.rounded_rect
 end)
@@ -34,16 +32,8 @@ F = {}
 require("config.layout")
 -- }}}
 
--- {{{ Wallpaper
---require("config.wallpaper")
--- }}}
-
 -- {{{ Wibar
 require("ui.bar")
--- }}}
-
--- {{{ Mouse bindings
-require("config.mousebindings")
 -- }}}
 
 -- {{{ Key bindings
@@ -54,21 +44,10 @@ require("config.keybindings")
 require("config.rule")
 -- }}}
 
--- {{{ Titlebars
-require("ui.titlebar")
--- }}}
-
--- {{{ Client
-require("ui.client")
--- }}}
-
 -- {{{ Notifications
 require("ui.notifications")
 -- }}}
 
--- {{{ Dashboard
-require("ui.popup.action")
--- }}}
 awful.spawn.with_shell("picom")
 awful.spawn.with_shell("nitrogen --restore")
 
