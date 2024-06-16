@@ -22,7 +22,7 @@ end)
 
 -- {{{ Variable definitions
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/night/theme.lua")
-terminal = "alacritty"
+terminal = "wezterm"
 editor = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal .. " -e " .. editor
 modkey = "Mod4"
