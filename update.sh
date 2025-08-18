@@ -18,7 +18,7 @@ declare -A file_map=(
   ["nvim"]="$dir_config_dest"
   ["rofi"]="$dir_config_dest"
   ["tmux"]="$dir_config_dest"
-  [".bashrc"]="home/$username"
+  [".bashrc"]="/home/$username/"
 )
 
 update_file() {
