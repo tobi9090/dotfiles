@@ -149,6 +149,7 @@ source "$OSH"/oh-my-bash.sh
  alias t="tmux"
  alias rma="rm -rf"
  alias lg="lazygit"
+ alias updateConfig="bash ~/dotfiles/update.sh"
 #  alias fd="fdfind"
 
 export NVM_DIR="$HOME/.nvm"

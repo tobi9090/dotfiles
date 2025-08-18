@@ -1,0 +1,33 @@
+# A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
+# If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
+"$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
+
+[manager]
+show_hidden = true
+linemode = "size_and_mtime"
+
+[opener]
+edit = [{ run = 'code "$@"', block = true, for = "unix" }]
+play = [{ run = 'mpv "$@"', orphan = true, for = "unix" }]
+bulk-rename = [{run = 'nvim "$@"', block = true, for = "unix"}]
+extract = [{ run = 'ya pub extract --list "$@"', orphan = true, desc = "Extract here", for = "unix" },]
+# extract-rar = [{ run = 'unrar e "$@"', desc = "Extract rar files here", for = "unix" }]
+extract-tar = [{ run = 'tar -xvzf "$@"', desc = "Extract tar files here", for = "unix" }]
+# extract-zip = [{ run = 'unzip -d ./ "$@"', block = true, desc = "Extract zip files here", for = "unix" }]
+
+
+[open]
+prepend_rules = [
+  { name = "*.json", use = "edit" },
+  { name = "*.txt", use = "edit" },
+  { name = "*.lua", use = "edit" },
+  { name = "bulk-*", use  = "bulk-rename" },
+  # { name = "*.tar.gz", use = ["extract-tar"] },
+  { name = "application/{,g}zip", use = ["extract"] },
+  { name = "application/x-{rar}", use = ["extract"] },
+  { name = "Videos/*", use = ["play"] },
+]
+
+[preview]
+max_width = 10440
+max_height = 10080

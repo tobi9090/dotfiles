@@ -1,0 +1,5 @@
+[plugin]
+deps = [{ use = "yazi-rs/plugins:jump-to-char", rev = "932b931" }, { use = "yazi-rs/plugins:max-preview", rev = "932b931" }, { use = "yazi-rs/plugins:chmod", rev = "932b931" }]
+
+[flavor]
+deps = [{ use = "bennyyip/gruvbox-dark", rev = "c204853" }]
