@@ -1,12 +1,11 @@
 #! usr/bin/bash
 username=$(id -u -n 1000)
-# slet Test !!!!!!!!!!!
+
 dir_config_src=/home/$username/dotfiles/config
 dir_config_dest=/home/$username/.config
 filename="$1"
 declare -A file_map=(
   ["lazygit"]="$dir_config_dest"
-  ["mpv"]="$dir_config_dest"
   ["neofetch"]="$dir_config_dest"
   ["qimgv"]="$dir_config_dest"
   ["yazi"]="$dir_config_dest"
